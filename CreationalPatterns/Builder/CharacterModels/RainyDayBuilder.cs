@@ -17,7 +17,7 @@ namespace Builder.CharacterModels
         public override void SetNickname()
         {
             Console.Write("Set your nickname: ");
-            Character["nickname"] = Console.ReadLine()
+            Character["nickname"] = Console.ReadLine();
         }
 
         public override void SetArmor()
