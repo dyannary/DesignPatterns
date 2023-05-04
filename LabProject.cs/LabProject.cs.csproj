@@ -7,10 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Mediator\" />
-    <Folder Include="ConcreteMediator\" />
-    <Folder Include="Components\" />
-  </ItemGroup>
-
 </Project>
