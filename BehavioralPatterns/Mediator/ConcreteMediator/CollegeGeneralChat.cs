@@ -3,29 +3,40 @@ using Mediator.Mediator;
 
 namespace Mediator.ConcreteMediator
 {
-    public class CollegeGeneralChat: CollegeChat
+    public class CollegeGeneralChat: ICollegeChat
     {
-        private List<ChatRoomMember> members = new List<ChatRoomMember>();
+        private List<User> _users = new List<User>();
 
-
-        public override void Register(ChatRoomMember member)
+        public void Register(User user)
         {
-            //bi-directional references
-            member.SetChatRoom(this);
-            this.members.Add(member);
+            user.SetChat(this);
+            _users.Add(user);
         }
 
-        public override void Send(string from, string message)
+        public void Send(string from, string message)
         {
-            this.members.ForEach(m => m.Recieve(from, message));
-        }
-
-        public void RegisterMembers(params ChatRoomMember[] teamMembers) 
-        {
-            foreach (var member in teamMembers)
+            _users.ForEach(u =>
             {
-                this.Register(member);
-            }
+                if (u.Name != from)
+                    u.Receive(from, message);
+            });
+        }
+
+        public void SendTo<T>(string from, string message) where T : User
+        {
+            _users.OfType<T>()
+                .ToList()
+                .ForEach(u =>
+                {
+                    if (u.Name != from)
+                        u.Receive(from, message);
+                });
+        }
+
+        public void RegisterUsers(params User[] users)
+        {
+            foreach (var user in users)
+                Register(user);
         }
     }
 }

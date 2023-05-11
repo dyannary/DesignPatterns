@@ -1,17 +1,17 @@
 ﻿using Mediator.Components;
 using Mediator.ConcreteMediator;
 
-var breakingBadChatRoom = new CollegeGeneralChat();
+var generalChat = new CollegeGeneralChat();
 
-var walter = new Developer("Walter White");
-var jessy = new Developer("Jesse Pinkman");
-var gustavo = new Developer("Gustavo Fring");
-var badger = new Developer("Badger Mayhew");
+var george = new Student("George Washington");
+var vince = new Student("Vince Plank");
+var lee = new Student("Lee Miles");
 
-//Register members
-breakingBadChatRoom.RegisterMembers(walter, jessy, gustavo, badger);
+var jeff = new Teacher("Prof. Jeff");
+var martin = new Teacher("Prof. Martin");
 
-//Messaging
-walter.Send("Hi, everyone!"); //on public window
+generalChat.RegisterUsers(george, vince, lee, jeff, martin);
 
-Console.ReadLine();
+george.Send("Salut la toti.");
+
+martin.SendTo<Teacher>("Maine, la ora 14:00, adunare generala!");
