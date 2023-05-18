@@ -1,2 +1,10 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using TemplateMethod.AbstractClass;
+using TemplateMethod.ConcreteClasses;
+
+WebPageTemplate homePage = new HomePage();
+homePage.DisplayPage();
+
+Console.WriteLine();
+
+WebPageTemplate aboutPage = new AboutPage();
+aboutPage.DisplayPage();
